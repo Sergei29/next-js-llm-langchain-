@@ -5,13 +5,13 @@
  * Dependencies: npm install pdf-parse
  */
 
-import { NextApiHandler } from "next";
-import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { PineconeStore } from "langchain/vectorstores/pinecone";
-import { PineconeClient } from "@pinecone-database/pinecone";
-import { OpenAI } from "langchain/llms/openai";
-import { VectorDBQAChain } from "langchain/chains";
-import { PromptTemplate } from "langchain/prompts";
+import { NextApiHandler } from 'next'
+import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
+import { PineconeStore } from 'langchain/vectorstores/pinecone'
+import { PineconeClient } from '@pinecone-database/pinecone'
+import { OpenAI } from 'langchain/llms/openai'
+import { VectorDBQAChain } from 'langchain/chains'
+import { PromptTemplate } from 'langchain/prompts'
 
 export default async function handler(req, res) {
   try {
@@ -20,9 +20,9 @@ export default async function handler(req, res) {
     return res.status(200).json({
       output: response.text,
       sourceDocuments: response.sourceDocuments,
-    });
+    })
   } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: "Error" });
+    console.error(err)
+    return res.status(500).json({ error: 'Error' })
   }
 }

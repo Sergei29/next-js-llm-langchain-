@@ -1,26 +1,26 @@
-import { ChatOpenAI } from "langchain/chat_models/openai";
-import { LLMChain } from "langchain/chains";
-import { ZeroShotAgent } from "langchain/agents";
+import { ChatOpenAI } from 'langchain/chat_models/openai'
+import { LLMChain } from 'langchain/chains'
+import { ZeroShotAgent } from 'langchain/agents'
 import {
   ChatPromptTemplate,
   HumanMessagePromptTemplate,
   SystemMessagePromptTemplate,
-} from "langchain/prompts";
-import { AgentExecutor } from "langchain/agents";
-import SerpAPITool from "../tools/SerpAPI";
-import WebBrowserTool from "../tools/WebBrowser";
+} from 'langchain/prompts'
+import { AgentExecutor } from 'langchain/agents'
+import SerpAPITool from '../tools/SerpAPI'
+import WebBrowserTool from '../tools/WebBrowser'
 
-const ResearchAgent = async (topic:string) => {
-  console.log({ topic });
- 
-  let result: null|string = null
+const ResearchAgent = async (topic: string) => {
+  console.log({ topic })
+
+  let result: null | string = null
   try {
     // do stuff
 
-    return result;
+    return result
   } catch (err) {
-    console.error(err);
+    console.error(err)
   }
-};
+}
 
-export default ResearchAgent;
+export default ResearchAgent

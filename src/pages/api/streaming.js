@@ -1,14 +1,15 @@
-import { OpenAI } from "langchain/llms/openai";
-import SSE from "express-sse";
+import { OpenAI } from 'langchain/llms/openai'
+import SSE from 'express-sse'
+import { NextApiHandler } from 'next'
 
-const sse = new SSE();
+const sse = new SSE()
 
 export default function handler(req, res) {
-  if (req.method === "POST") {
-    const { input } = req.body;
+  if (req.method === 'POST') {
+    const { input } = req.body
 
     if (!input) {
-      throw new Error("No input");
+      throw new Error('No input')
     }
     // Initialize model
 
@@ -16,10 +17,10 @@ export default function handler(req, res) {
 
     // call frontend to backend
 
-    return res.status(200).json({ result: "OK" });
-  } else if (req.method === "GET") {
-    sse.init(req, res);
+    return res.status(200).json({ result: 'OK' })
+  } else if (req.method === 'GET') {
+    sse.init(req, res)
   } else {
-    res.status(405).json({ message: "Method not allowed" });
+    res.status(405).json({ message: 'Method not allowed' })
   }
 }
