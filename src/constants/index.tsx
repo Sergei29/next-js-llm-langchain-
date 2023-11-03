@@ -1,0 +1,51 @@
+export const NAV_LINKS = [
+  {
+    id: '1',
+    href: '/pdf',
+    imageSrc: '/assets/images/pdf.png',
+    imageAlt: 'robot reading newspaper',
+    title: 'PDF-GPT',
+  },
+  {
+    id: '2',
+    href: '/memory',
+    imageSrc: '/assets/images/brain.png',
+    imageAlt: 'brain game',
+    title: 'Memory',
+  },
+  {
+    id: '3',
+    href: '/streaming',
+    imageSrc: '/assets/images/stream.png',
+    imageAlt: 'robot speaking into microphone',
+    title: 'Streaming',
+  },
+  {
+    id: '4',
+    href: '/video-chat',
+    imageSrc: '/assets/images/youtube.png',
+    imageAlt: 'TV Toy',
+    title: 'YT Vid Chat',
+  },
+  {
+    id: '5',
+    href: '/content-generator',
+    imageSrc: '/assets/images/wizard.png',
+    imageAlt: 'Wizard Toy',
+    title: 'Content Wiz',
+  },
+  {
+    id: '6',
+    href: '/resume-reader',
+    imageSrc: '/assets/images/robohr.png',
+    imageAlt: 'HR Robot Typing Keyboard',
+    title: 'RoboHR',
+  },
+  {
+    id: '7',
+    href: '/api-tester',
+    imageSrc: '/assets/images/tools.png',
+    imageAlt: 'Toolbox Toy',
+    title: 'Testing',
+  },
+]

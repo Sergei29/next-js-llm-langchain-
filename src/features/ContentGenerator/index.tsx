@@ -1,11 +1,19 @@
 'use client'
 
 import React, { useState } from 'react'
-import PageHeader from '../components/PageHeader'
-import PromptBox from '../components/PromptBox'
-import ResultWithSources from '../components/ResultWithSources'
-import Title from '../components/Title'
-import TwoColumnLayout from '../components/TwoColumnLayout'
+
+import ResultWithSources from '@/components/ResultWithSources'
+import TwoColumnLayout from '@/components/TwoColumnLayout'
+import PageHeader from '@/components/PageHeader'
+import PromptBox from '@/components/PromptBox'
+import Title from '@/components/Title'
+
+const INITIAL_MESSAGE = {
+  text: "Hi there! I'm your personal YouTube video script generator. If you give me a YouTube URL and topic, I can transform it into a unique video script. Send me a YouTube URL to get started.",
+}
+
+const INITAL_PROMPT = 'https://www.youtube.com/watch?v=O_9JoimRj8w'
+const INITIAL_TOPIC = 'Pedro Pascal'
 
 /**
  *
@@ -16,17 +24,11 @@ import TwoColumnLayout from '../components/TwoColumnLayout'
  */
 const ContentGenerator = () => {
   // Follw up: Write me a tweet about pedro pascal.
-  const [prompt, setPrompt] = useState(
-    'https://www.youtube.com/watch?v=O_9JoimRj8w',
-  )
-  const [topic, setTopic] = useState('Pedro Pascal')
+  const [prompt, setPrompt] = useState(INITAL_PROMPT)
+  const [topic, setTopic] = useState(INITIAL_TOPIC)
   const [error, setError] = useState<null | string>(null)
   const [firstMsg, setFirstMsg] = useState(true)
-  const [messages, setMessages] = useState([
-    {
-      text: "Hi there! I'm your personal YouTube video script generator. If you give me a YouTube URL and topic, I can transform it into a unique video script. Send me a YouTube URL to get started.",
-    },
-  ])
+  const [messages, setMessages] = useState([INITIAL_MESSAGE])
 
   const handlePromptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrompt(e.target.value)

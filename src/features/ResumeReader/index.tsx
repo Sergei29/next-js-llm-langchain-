@@ -1,26 +1,27 @@
 'use client'
 
 import React, { useState } from 'react'
-import PageHeader from '../components/PageHeader'
-import PromptBox from '../components/PromptBox'
-import Title from '../components/Title'
-import TwoColumnLayout from '../components/TwoColumnLayout'
-import ResultWithSources from '../components/ResultWithSources'
-import ButtonContainer from '../components/ButtonContainer'
-import Button from '../components/Button'
 
-const endpoint = '/api/resume-query-metadata'
+import ResultWithSources from '@/components/ResultWithSources'
+import TwoColumnLayout from '@/components/TwoColumnLayout'
+import ButtonContainer from '@/components/ButtonContainer'
+import PageHeader from '@/components/PageHeader'
+import PromptBox from '@/components/PromptBox'
+import Button from '@/components/Button'
+import Title from '@/components/Title'
+
+const INITAL_PROMPT = 'Who has experience with Python?'
+const ENDPOINT_RESUME_QUERY = '/api/resume-query-metadata'
+const ENDPOINT_RESUME_UPLOAD = '/api/resume-upload'
+const INITIAL_MESSAGE = {
+  text: 'After loading the vector database, ask me anything about your documents! E.g., Has anyone worked at Meta? Where did Joanna Smith go to school? Does Kaito Esquivel have any recommendations?',
+  type: 'bot',
+}
 
 const ResumeReader = () => {
-  const [prompt, setPrompt] = useState('Who has experience with Python?')
+  const [prompt, setPrompt] = useState(INITAL_PROMPT)
   const [error, setError] = useState<null | string>(null)
-
-  const [messages, setMessages] = useState([
-    {
-      text: 'After loading the vector database, ask me anything about your documents! E.g., Has anyone worked at Meta? Where did Joanna Smith go to school? Does Kaito Esquivel have any recommendations?',
-      type: 'bot',
-    },
-  ])
+  const [messages, setMessages] = useState([INITIAL_MESSAGE])
 
   const handlePromptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrompt(e.target.value)
@@ -36,7 +37,7 @@ const ResumeReader = () => {
         },
       ])
 
-      const response = await fetch(`/api/resume-upload`)
+      const response = await fetch(ENDPOINT_RESUME_UPLOAD)
       const transcriptRes = await response.json()
 
       if (!response.ok) {
@@ -78,7 +79,7 @@ const ResumeReader = () => {
         { text: '...', type: 'bot', sourceDocuments: null },
       ])
 
-      const response = await fetch(`${endpoint}`, {
+      const response = await fetch(`${ENDPOINT_RESUME_QUERY}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
