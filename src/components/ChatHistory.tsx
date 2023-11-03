@@ -1,8 +1,10 @@
-import React from "react";
+import React from 'react'
 
-interface IProps { chatHistory: Record<string, any>[] }
+interface IProps {
+  chatHistory: Record<string, any>[]
+}
 
-const ChatHistory = ({ chatHistory }:IProps) => {
+const ChatHistory = ({ chatHistory }: IProps) => {
   return (
     chatHistory && (
       <div className="flex flex-col items-start space-y-4 mb-8">
@@ -11,7 +13,7 @@ const ChatHistory = ({ chatHistory }:IProps) => {
             <div className={`text-right`}>
               <div
                 className={`bg-blue-500 text-white rounded-lg p-2 max-w-xs inline-block`}
-                style={{ float: "right" }}
+                style={{ float: 'right' }}
               >
                 <p>{message.human}</p>
               </div>
@@ -27,7 +29,7 @@ const ChatHistory = ({ chatHistory }:IProps) => {
         ))}
       </div>
     )
-  );
-};
+  )
+}
 
-export default ChatHistory;
+export default ChatHistory

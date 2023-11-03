@@ -1,14 +1,14 @@
 'use client'
 
-import React from "react";
+import React from 'react'
 
 interface IProps {
-  label: string;
-  inputValue: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>)=>void;
-  placeHolderText: string;
-  inputWidth: number;
-  labelWidth: number;
+  label: string
+  inputValue: string
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  placeHolderText: string
+  inputWidth: number
+  labelWidth: number
 }
 
 const Input = ({
@@ -18,7 +18,7 @@ const Input = ({
   placeHolderText,
   inputWidth,
   labelWidth,
-}:IProps) => {
+}: IProps) => {
   return (
     <div className="flex items-center mb-4">
       <label
@@ -30,11 +30,11 @@ const Input = ({
         type="text"
         value={inputValue}
         onChange={onChange}
-        placeholder={placeHolderText || "Input"}
+        placeholder={placeHolderText || 'Input'}
         className={`py-2 px-4 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded w-${labelWidth}`} // Adjust the width as per your preference
       />
     </div>
-  );
-};
+  )
+}
 
-export default Input;
+export default Input

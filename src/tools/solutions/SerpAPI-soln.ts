@@ -1,4 +1,4 @@
-import { SerpAPI } from "langchain/tools";
+import { SerpAPI } from 'langchain/tools'
 
 /**
  *
@@ -7,15 +7,19 @@ import { SerpAPI } from "langchain/tools";
  */
 
 const SerpAPITool = () => {
-  const baseUrl = "http://localhost:3000/agents"
-  const serpAPI = new SerpAPI(process.env.SERPAPI_API_KEY, {
-    location: "Vancouver,British Columbia, Canada",
-    hl: "en",
-    gl: "us",
-  }, baseUrl);
-  serpAPI.returnDirect = true;
+  const baseUrl = 'http://localhost:3000/agents'
+  const serpAPI = new SerpAPI(
+    process.env.SERPAPI_API_KEY,
+    {
+      location: 'Vancouver,British Columbia, Canada',
+      hl: 'en',
+      gl: 'us',
+    },
+    baseUrl,
+  )
+  serpAPI.returnDirect = true
 
-  return serpAPI;
-};
+  return serpAPI
+}
 
-export default SerpAPITool;
+export default SerpAPITool

@@ -1,13 +1,13 @@
-import { OpenAI } from "langchain/llms/openai";
-import { ChatOpenAI } from "langchain/chat_models/openai";
-import { PromptTemplate } from "langchain/prompts";
-import { LLMChain } from "langchain/chains";
-import { initializeAgentExecutorWithOptions } from "langchain/agents";
-import { SerpAPI } from "langchain/tools";
-import { Calculator } from "langchain/tools/calculator";
-import { BufferMemory } from "langchain/memory";
-import { ConversationChain } from "langchain/chains";
-import { PlanAndExecuteAgentExecutor } from "langchain/experimental/plan_and_execute";
+import { OpenAI } from 'langchain/llms/openai'
+import { ChatOpenAI } from 'langchain/chat_models/openai'
+import { PromptTemplate } from 'langchain/prompts'
+import { LLMChain } from 'langchain/chains'
+import { initializeAgentExecutorWithOptions } from 'langchain/agents'
+import { SerpAPI } from 'langchain/tools'
+import { Calculator } from 'langchain/tools/calculator'
+import { BufferMemory } from 'langchain/memory'
+import { ConversationChain } from 'langchain/chains'
+import { PlanAndExecuteAgentExecutor } from 'langchain/experimental/plan_and_execute'
 
 /**
  *
@@ -42,11 +42,11 @@ import { PlanAndExecuteAgentExecutor } from "langchain/experimental/plan_and_exe
  */
 
 const template =
-  "Please give me some ideas for content I should write about regarding {topic}? The content is for {socialplatform}. Translate to {language}.";
+  'Please give me some ideas for content I should write about regarding {topic}? The content is for {socialplatform}. Translate to {language}.'
 const prompt = new PromptTemplate({
   template: template,
-  inputVariables: ["topic", "socialplatform", "language"],
-});
+  inputVariables: ['topic', 'socialplatform', 'language'],
+})
 
 // This allows us to format the template into a string, which is finally passed to the LLM
 // const formattedTemplate = await prompt.format({
@@ -69,8 +69,8 @@ const prompt = new PromptTemplate({
  *
  */
 
-const model = new OpenAI({ temperature: 0.9 });
-const chain = new LLMChain({ llm: model, prompt: prompt });
+const model = new OpenAI({ temperature: 0.9 })
+const chain = new LLMChain({ llm: model, prompt: prompt })
 
 // Now that we've defined the chain, we can call the LLMChain, which does two steps:
 
@@ -118,29 +118,29 @@ const chain = new LLMChain({ llm: model, prompt: prompt });
 // davinci - default
 const agentModel = new OpenAI({
   temperature: 0,
-  modelName: "text-davinci-003",
-});
+  modelName: 'text-davinci-003',
+})
 
 // serpTool.returnDirect = true;
 
 const tools = [
   new SerpAPI(process.env.SERPAPI_API_KEY, {
-    location: "Dallas,Texas,United States",
-    hl: "en",
-    gl: "us",
+    location: 'Dallas,Texas,United States',
+    hl: 'en',
+    gl: 'us',
   }),
   new Calculator(),
-];
+]
 
 // const executor = await initializeAgentExecutorWithOptions(tools, agentModel, {
 //   agentType: "zero-shot-react-description",
 //   verbose: true,
 //   maxIterations: 5,
 // });
-console.log("Loaded agent.");
-const input = "What is Langchain?";
+console.log('Loaded agent.')
+const input = 'What is Langchain?'
 
-console.log(`Executing with input "${input}"...`);
+console.log(`Executing with input "${input}"...`)
 // Awesome, so we can see it figured out that it needed to use a search engine.
 // const result = await executor.call({ input });
 
@@ -166,23 +166,23 @@ console.log(`Executing with input "${input}"...`);
  * 
  */
 
-const agentTools = [new Calculator(), new SerpAPI()];
+const agentTools = [new Calculator(), new SerpAPI()]
 // only works with Chat models
 const chatModel = new ChatOpenAI({
   temperature: 0,
-  modelName: "gpt-3.5-turbo",
+  modelName: 'gpt-3.5-turbo',
   verbose: true,
-});
+})
 const executor = PlanAndExecuteAgentExecutor.fromLLMAndTools({
   llm: chatModel,
   tools: agentTools,
-});
+})
 
 const result = await executor.call({
   input: `Who is the current president of the United States? What is their current age raised to the second power?`,
-});
+})
 
-console.log({ result });
+console.log({ result })
 
 // const llm = new OpenAI({});
 // const memory = new BufferMemory();
