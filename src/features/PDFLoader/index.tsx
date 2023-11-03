@@ -10,7 +10,7 @@ import PromptBox from '@/components/PromptBox'
 import Button from '@/components/Button'
 import Title from '@/components/Title'
 
-import '../globals.css'
+// import '../globals.css'
 
 // This functional component is responsible for loading PDFs
 const PDFLoader = () => {
