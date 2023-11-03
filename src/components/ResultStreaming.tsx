@@ -1,8 +1,12 @@
 import React from 'react'
 
+export interface IStreamingData {
+  output: React.ReactNode
+  sourceDocuments: Record<string, any>[]
+}
 interface IProps {
   [x: string]: any
-  data?: { output: React.ReactNode; sourceDocuments: Record<string, any>[] }
+  data?: IStreamingData | string | null
 }
 
 const ResultStreaming = ({ data }: IProps) => {
@@ -13,10 +17,13 @@ const ResultStreaming = ({ data }: IProps) => {
         <pre className="text-black-500 mb-4">{data}</pre>
       )}
       {/* If data is an object */}
-      {data && <p className="text-black-500 mb-4">{data?.output}</p>}
+      {data && typeof data === 'object' && (
+        <p className="text-black-500 mb-4">{data?.output}</p>
+      )}
 
       {/* If data has source documents (e.g. when querying from a VectorDBQAChain and returnSourceDocuments is true) */}
       {data &&
+        typeof data === 'object' &&
         data.sourceDocuments &&
         data.sourceDocuments.map((doc, index) => (
           <div key={index} className="bg-grey-100 p-1 rounded shadow mb-2">

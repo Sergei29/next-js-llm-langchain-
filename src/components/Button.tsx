@@ -1,15 +1,23 @@
 'use client'
 
 import React from 'react'
+import classnames from 'classnames'
 
 interface IProps {
   color?: string
   handleSubmit: (endpoint?: string) => void | Promise<void>
   endpoint?: string
   buttonText: string
+  className?: string
 }
 
-const Button = ({ color = '', handleSubmit, endpoint, buttonText }: IProps) => {
+const Button = ({
+  color = '',
+  handleSubmit,
+  endpoint,
+  buttonText,
+  className,
+}: IProps) => {
   const colorClasses: Record<string, string> = {
     red: 'bg-red-500 hover:bg-red-600',
     blue: 'bg-blue-500 hover:bg-blue-600',
@@ -31,7 +39,10 @@ const Button = ({ color = '', handleSubmit, endpoint, buttonText }: IProps) => {
   return (
     <button
       onClick={handleClick}
-      className={`py-2 px-6 mb-4 rounded-full border border-gray-500 shadow hover:shadow-lg ${colorClass}`}
+      className={classnames(
+        `py-2 px-6 mb-4 rounded-full border border-gray-500 shadow hover:shadow-lg ${colorClass}`,
+        className,
+      )}
     >
       {buttonText}
     </button>

@@ -1,16 +1,17 @@
-"use client";
+'use client'
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
+import Link from 'next/link'
 
-import Link from "next/link";
-import { sourceCodePro } from "./styles/fonts";
-import HamburgerMenu from "./components/HamburgerMenu";
+import HamburgerMenu from '@/components/HamburgerMenu'
+import { sourceCodePro } from '@/styles/fonts'
+
 const Navbar = () => {
-  const [isClient, setIsClient] = useState(false);
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
-    setIsClient(true);
-  }, []);
+    setIsClient(true)
+  }, [])
 
   // const Navbar = () => {
   return (
@@ -18,7 +19,7 @@ const Navbar = () => {
       <a href="/" className={`text-center`}>
         LANGCHAIN JS UDEMY COURSE
       </a>
-      {isClient && <HamburgerMenu />}{" "}
+      {isClient && <HamburgerMenu />}{' '}
       {/* Render HamburgerMenu component on the client side */}
       <p className={`text-center`}>WEEKNIGHTS + WEEKENDS</p>
       <div className="hidden">
@@ -53,7 +54,7 @@ const Navbar = () => {
         {/* <Link href="/[APP_FOLDER_NAME]">New Page 📄</Link> */}
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

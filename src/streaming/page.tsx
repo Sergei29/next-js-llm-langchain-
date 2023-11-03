@@ -1,34 +1,35 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import PageHeader from "../components/PageHeader";
-import PromptBox from "../components/PromptBox";
-import ResultStreaming from "../components/ResultStreaming";
-import Title from "../components/Title";
-import TwoColumnLayout from "app/components/TwoColumnLayout";
+'use client'
+
+import React, { useState, useEffect } from 'react'
+import PageHeader from '../components/PageHeader'
+import PromptBox from '../components/PromptBox'
+import ResultStreaming, { IStreamingData } from '../components/ResultStreaming'
+import Title from '../components/Title'
+import TwoColumnLayout from '@/components/TwoColumnLayout'
 
 const Streaming = () => {
-  const [prompt, setPrompt] = useState("");
-  const [error, setError] = useState(null);
-  const [data, setData] = useState("");
+  const [prompt, setPrompt] = useState('')
+  const [error, setError] = useState(null)
+  const [data, setData] = useState<IStreamingData | string | null>(null)
   //   add code
 
-  const processToken = (token) => {
+  const processToken = (token: string) => {
     // add code
-    return;
-  };
+    return
+  }
 
-  const handlePromptChange = (e) => {
-    setPrompt(e.target.value);
-  };
+  const handlePromptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPrompt(e.target.value)
+  }
 
   const handleSubmit = async () => {
     try {
       //   add code
     } catch (err) {
-      console.error(err);
-      setError(error);
+      console.error(err)
+      setError(error)
     }
-  };
+  }
 
   // Clean up the EventSource on component unmount
   //   add code
@@ -52,7 +53,7 @@ const Streaming = () => {
               prompt={prompt}
               handlePromptChange={handlePromptChange}
               handleSubmit={handleSubmit}
-              placeHolderText={"Enter your name and city"}
+              placeHolderText={'Enter your name and city'}
               error={error}
               pngFile="pdf"
             />
@@ -60,7 +61,7 @@ const Streaming = () => {
         }
       />
     </>
-  );
-};
+  )
+}
 
-export default Streaming;
+export default Streaming
