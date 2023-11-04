@@ -1,11 +1,7 @@
 import Memory from '@/features/Memory'
 
 const MemoryPage = async () => {
-  return (
-    <>
-      <Memory />
-    </>
-  )
+  return <Memory />
 }
 
 export default MemoryPage
