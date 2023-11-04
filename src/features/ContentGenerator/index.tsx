@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 
+import { fetchJsonData } from '@/utils/common/fetch'
 import ResultWithSources from '@/components/ResultWithSources'
 import TwoColumnLayout from '@/components/TwoColumnLayout'
 import PageHeader from '@/components/PageHeader'
@@ -40,30 +41,26 @@ const ContentGenerator = () => {
 
   // Make sure to change the API route
   const handleSubmit = async () => {
-    try {
-      // Push the user's message into the messages array
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { text: prompt, type: 'user', sourceDocuments: null },
-      ])
+    // Push the user's message into the messages array
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { text: prompt, type: 'user', sourceDocuments: null },
+    ])
 
-      const response = await fetch(`/api/content-generator`, {
+    const [searchRes, err] = await fetchJsonData<Record<string, any>>(
+      `/api/content-generator`,
+      {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ prompt: prompt, topic: topic, firstMsg }),
-      })
+      },
+    )
 
-      const searchRes = await response.json()
-
-      console.log({ searchRes })
-
-      if (!response.ok) {
-        throw new Error(searchRes.error)
-      }
-
-      // Push the response into the messages array
+    if (err || !searchRes) {
+      setError('Error fetching transcript. Please try again.')
+    } else {
       setMessages((prevMessages) => [
         ...prevMessages,
         {
@@ -71,13 +68,10 @@ const ContentGenerator = () => {
           type: 'bot',
         },
       ])
-      setFirstMsg(false)
-      setPrompt('')
-      setError('')
-    } catch (err) {
-      console.error(err)
-      setError('Error fetching transcript. Please try again.')
     }
+
+    setFirstMsg(false)
+    setPrompt('')
   }
 
   return (
@@ -95,7 +89,6 @@ const ContentGenerator = () => {
         }
         rightChildren={
           <>
-            {/* Added max messages */}
             <ResultWithSources
               messages={messages}
               pngFile="wizard"

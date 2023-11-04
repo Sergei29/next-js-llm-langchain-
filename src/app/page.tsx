@@ -29,7 +29,6 @@ const HomePage = () => {
             instrumental in achieving your goals.
           </p>
         </div>
-        {/* Gallery */}
         <Gallery />
       </div>
       <p

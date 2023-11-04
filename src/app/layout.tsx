@@ -18,9 +18,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${instrumentSans.className} `}>
-        <Navbar />
-        <main className="flex flex-col pt-20 px-20">{children}</main>
+      <body className={`${instrumentSans.className} py-20`}>
+        <header>
+          <Navbar />
+        </header>
+        <main className="flex flex-col px-20">{children}</main>
         <Footer />
       </body>
     </html>
