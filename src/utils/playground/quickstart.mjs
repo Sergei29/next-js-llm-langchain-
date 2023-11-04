@@ -8,7 +8,6 @@ import { Calculator } from 'langchain/tools/calculator'
 import { BufferMemory } from 'langchain/memory'
 import { ConversationChain } from 'langchain/chains'
 import { PlanAndExecuteAgentExecutor } from 'langchain/experimental/plan_and_execute'
-import { exec } from 'child_process'
 
 // in your terminal, run the commands below:
 // export OPENAI_API_KEY=<>

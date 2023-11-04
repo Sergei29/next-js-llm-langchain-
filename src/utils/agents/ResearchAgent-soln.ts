@@ -1,15 +1,15 @@
 import { ChatOpenAI } from 'langchain/chat_models/openai'
 import { LLMChain } from 'langchain/chains'
 import { ZeroShotAgent } from 'langchain/agents'
-
 import {
   ChatPromptTemplate,
   HumanMessagePromptTemplate,
   SystemMessagePromptTemplate,
 } from 'langchain/prompts'
 import { AgentExecutor } from 'langchain/agents'
-import SerpAPITool from '../tools/SerpAPI'
-import WebBrowserTool from '../tools/WebBrowser'
+
+import SerpAPITool from '@/tools/SerpAPI'
+import WebBrowserTool from '@/tools/WebBrowser'
 
 /**
  *

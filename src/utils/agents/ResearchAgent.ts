@@ -7,8 +7,9 @@ import {
   SystemMessagePromptTemplate,
 } from 'langchain/prompts'
 import { AgentExecutor } from 'langchain/agents'
-import SerpAPITool from '../tools/SerpAPI'
-import WebBrowserTool from '../tools/WebBrowser'
+
+import SerpAPITool from '@/tools/SerpAPI'
+import WebBrowserTool from '@/tools/WebBrowser'
 
 const ResearchAgent = async (topic: string) => {
   console.log({ topic })
