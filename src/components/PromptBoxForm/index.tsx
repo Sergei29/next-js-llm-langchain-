@@ -1,6 +1,6 @@
 'use client'
 
-import React, { forwardRef } from 'react'
+import { forwardRef, FormEvent } from 'react'
 import classnames from 'classnames'
 
 import { sourceCodePro } from '@/styles/fonts'
@@ -29,7 +29,7 @@ const PromptBoxForm = forwardRef<Ref, IProps>(
     },
     formRef,
   ): JSX.Element => {
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault()
       const formData = new FormData(event.currentTarget)
       postPrompt(formData)

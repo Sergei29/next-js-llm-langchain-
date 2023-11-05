@@ -1,7 +1,5 @@
 'use client'
 
-import React from 'react'
-
 import PromptBoxForm from '@/components/PromptBoxForm'
 import { useChatBox } from '@/hooks/useChatBox'
 import { IServerActionResponse } from '@/types'
@@ -18,7 +16,7 @@ const ChatBox = ({ serverActionChat }: IProps): JSX.Element => {
 
   return (
     <div className="h-full">
-      <div className="flex flex-col gap-2 items-center h-[50%] max-h-[400px] overflow-y-scroll">
+      <div className="flex flex-col gap-2 items-center h-[50%] max-h-[500px] bg-gray-100 p-4 rounded-3xl shadow-lg mb-8 overflow-y-auto space-y-4">
         <ChatHistory chatList={data} />
         {isLoading && (
           <p className="font-semibold text-center text-green-700">

@@ -4,14 +4,16 @@ import { IChatHistoryItem, IParentProps } from '@/types'
 
 const Question = ({ children }: IParentProps) => (
   <p className="mb-1 px-2 py-1 rounded bg-yellow-200 border-1 border-yellow-500 text-sm">
-    <span className="font-bold">Q: </span>
+    <span className="mr-2 p-1 h-[30px] w-[30px] rounded-full bg-white">🤷‍♂️</span>
     <span>{children}</span>
   </p>
 )
 
 const Answer = ({ children }: IParentProps) => (
   <p className="ml-4 px-2 py-1 rounded bg-pink-200 border-1 border-pink-500 text-sm">
-    <span className="font-bold">AI: </span>
+    <span className="mr-2 p-1 h-[30px] w-[30px] rounded-full bg-yellow-100">
+      🤖
+    </span>
     <span>{children}</span>
   </p>
 )
