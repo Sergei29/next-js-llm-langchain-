@@ -10,7 +10,7 @@ interface IProps {
 }
 
 const ChatBox = ({ serverActionChat }: IProps): JSX.Element => {
-  const [{ isLoading, error, data }, postPrompt, formRef] = useChatBox({
+  const [{ isLoading, error, data, reset }, postPrompt, formRef] = useChatBox({
     serverAction: serverActionChat,
   })
 
@@ -31,6 +31,12 @@ const ChatBox = ({ serverActionChat }: IProps): JSX.Element => {
         postPrompt={postPrompt}
         className="mt-10"
       />
+      <button
+        onClick={reset}
+        className="w-full px-2 py-1 bg-orange-500 hover:bg-orange-600 text-center rounded text-green-900 font-semibold uppercase"
+      >
+        reset
+      </button>
     </div>
   )
 }

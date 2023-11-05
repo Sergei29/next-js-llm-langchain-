@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react'
 
 import { isServer } from '@/utils/common'
 
-type HookReturnValue<D> = [D | null, (value: D) => void]
-
 const getValueFromLocalStorage = <P>(key: string, initialValue: P): P => {
   if (isServer()) {
     return initialValue
@@ -20,7 +18,7 @@ const getValueFromLocalStorage = <P>(key: string, initialValue: P): P => {
 export const useLocalStorage = <T>(
   key: string,
   initialValue: T,
-): HookReturnValue<T> => {
+): [T | null, (value: T) => void] => {
   const [storedValue, setStoredValue] = useState<T | null>(null)
 
   const setValue = (value: T) => {
