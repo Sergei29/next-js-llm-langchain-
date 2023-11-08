@@ -1,19 +1,15 @@
 import React from 'react'
 
-export interface IStreamingData {
-  output: React.ReactNode
-  sourceDocuments: Record<string, any>[]
-}
+import { IStreamingData } from '@/types'
 interface IProps {
-  [x: string]: any
   data?: IStreamingData | string | null
 }
 
 const ResultStreaming = ({ data }: IProps) => {
   return (
-    <div className="bg-gray-100 p-6 rounded shadow mb-4">
+    <div className="bg-gray-100 p-6 rounded shadow mb-4 min-h-[500px]">
       {/* If data is a string */}
-      {typeof data === 'string' && (
+      {typeof data === 'string' && !!data && (
         <pre className="text-black-500 mb-4">{data}</pre>
       )}
       {/* If data is an object */}

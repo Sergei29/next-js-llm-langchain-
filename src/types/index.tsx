@@ -22,3 +22,8 @@ export interface IChatHistoryItem {
   question: string
   answer: string
 }
+
+export interface IStreamingData {
+  output: React.ReactNode
+  sourceDocuments: Record<string, any>[]
+}
