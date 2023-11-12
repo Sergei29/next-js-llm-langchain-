@@ -20,7 +20,7 @@ const ChatStream = (): JSX.Element => {
     setError(null)
 
     try {
-      const res = await fetch('/api/chat', {
+      const res = await fetch('/api/chat-streaming', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
