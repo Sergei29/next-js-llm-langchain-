@@ -4,28 +4,54 @@ import React, { useState } from 'react'
 
 import InputForm from '@/components/InputForm'
 
-const LOREM_IPSUM =
-  'Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?'
-
-interface IProps {}
-
-const ChatStream = ({}: IProps): JSX.Element => {
+const ChatStream = (): JSX.Element => {
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<null | string>(null)
-  const [streamedData, setStreamedData] = useState(LOREM_IPSUM)
+  const [streamedData, setStreamedData] = useState('')
 
   const onSubmit = async (formData: FormData) => {
-    setError(null)
-    try {
-      const prompt = formData.get('prompt')
+    const prompt = formData.get('prompt')
+    if (typeof prompt !== 'string' || !prompt) {
+      setError('Form value for prompt is missing.')
+      return
+    }
 
-      if (typeof prompt !== 'string' || !prompt) {
-        throw new Error('Form value for prompt is missing.')
+    setIsLoading(true)
+    setError(null)
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt }),
+      })
+      if (!res.ok) {
+        throw new Error(res.statusText)
       }
 
-      console.log('prompt :>> ', prompt)
-    } catch (err) {
-      const msg = err instanceof Error ? err.message : 'Chat streaming error'
+      const reader = res.body?.getReader()
+
+      while (true) {
+        const chunk = await reader?.read()
+        const done = chunk?.done
+        const value = chunk?.value
+
+        if (done) {
+          break
+        }
+
+        const text = new TextDecoder().decode(value)
+        setStreamedData((current) => current + text)
+      }
+
+      setIsLoading(false)
+    } catch (error) {
+      const msg: string =
+        error instanceof Error ? error.message : (error as any).ToString()
       setError(msg)
+      setIsLoading(false)
     }
   }
 
@@ -39,6 +65,11 @@ const ChatStream = ({}: IProps): JSX.Element => {
       <div className="h-12">
         {error && (
           <p className="text-red-700 font-semibold text-center">{error}</p>
+        )}
+        {isLoading && (
+          <p className="text-green-400-700 font-semibold text-center">
+            Loading...
+          </p>
         )}
       </div>
 
