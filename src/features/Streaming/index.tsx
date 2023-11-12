@@ -2,7 +2,6 @@ import StreamingContent from '@/components/StreamingContent'
 import { PageLayout } from '@/components/TwoColumnLayout'
 import PageHeader from '@/components/PageHeader'
 import Title from '@/components/Title'
-import { streamContentActon } from '@/utils/serverActions/streamContentAction'
 
 const Streaming = () => {
   return (
